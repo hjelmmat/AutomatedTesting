@@ -55,7 +55,7 @@ class MealTableViewController: UITableViewController {
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
-        cell.ratingControl.rating = meal.rating
+        cell.ratingControl.setupButtons(withRating: meal.rating)
         
         return cell
     }
@@ -71,7 +71,7 @@ class MealTableViewController: UITableViewController {
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             meals.remove(at: indexPath.row)
@@ -116,7 +116,7 @@ class MealTableViewController: UITableViewController {
             }
             
             guard let selectedMealCell = sender as? MealTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedMealCell) else {
@@ -127,7 +127,7 @@ class MealTableViewController: UITableViewController {
             mealDetailViewController.meal = selectedMeal
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
 

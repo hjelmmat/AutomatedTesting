@@ -42,4 +42,8 @@ class FoodTrackerTests: XCTestCase {
         XCTAssertNil(emptyStringMeal)
         
     }
+    
+    func testMealRatimgBounds() {
+        
+    }
 }

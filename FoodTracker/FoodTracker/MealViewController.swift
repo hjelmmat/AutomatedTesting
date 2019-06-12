@@ -5,6 +5,7 @@
 //  Created by Jane Appleseed on 10/17/16.
 //  Copyright © 2016 Apple Inc. All rights reserved.
 //
+//  Edited by Matthew Hjelm on 06/06/19
 
 import UIKit
 import os.log
@@ -34,7 +35,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             navigationItem.title = meal.name
             nameTextField.text = meal.name
             photoImageView.image = meal.photo
-            ratingControl.rating = meal.rating
+            ratingControl.setupButtons(withRating: meal.rating)
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -65,10 +66,10 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
@@ -109,7 +110,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         let name = nameTextField.text ?? ""
         let photo = photoImageView.image
-        let rating = ratingControl.rating
+        let rating = ratingControl.currentRating()
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
         meal = Meal(name: name, photo: photo, rating: rating)
