@@ -64,11 +64,11 @@ class RatingModel: NSObject {
         let valueString: String
         switch (rating) {
         case 0:
-            valueString = "No rating set."
+            valueString = "No rating set"
         case 1:
-            valueString = "1 \(type) set."
+            valueString = "1 \(type) set"
         default:
-            valueString = "\(rating) \(type)s set."
+            valueString = "\(rating) \(type)s set"
         }
         return valueString
     }

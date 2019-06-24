@@ -20,7 +20,7 @@ class TestRatingModel: XCTestCase {
     }
     
     func testConstructor() {
-        XCTAssertNil(RatingModel(withMaxRatingOf: 0, andDescription: type), "RatingModel should not initailze when given a max rating of 0")
+        XCTAssertNil(RatingModel(withMaxRatingOf: 0, andDescription: type), "RatingModel should not initalize when given a max rating of 0")
         XCTAssertNil(RatingModel(withMaxRatingOf: -1, andDescription: type), "RatingModel should not initalize when given a negative max rating")
         XCTAssertNotNil(RatingModel(withMaxRatingOf: 1, andDescription: type), "RatingModel should initalize when giving a max rating greater than 0")
     }
@@ -67,9 +67,9 @@ class TestRatingModel: XCTestCase {
     }
     
     func testValueString() {
-        let expectedStrings = [0: "No rating set.",
-                               1: "1 \(type) set.",
-                               2: "2 \(type)s set."]
+        let expectedStrings = [0: "No rating set",
+                               1: "1 \(type) set",
+                               2: "2 \(type)s set"]
         for value in [0, 1, 2] {
             _ = rating.updateRating(to: value)
             let currentString = expectedStrings[value]!
